@@ -1,0 +1,44 @@
+<p-panel header="Nova Oportunidade">
+  <div class="p-grid">
+    <div class="p-col-2">Descrição</div>
+    <div class="p-col-10">
+      <input pInputText type="text" [(ngModel)]="oportunidade.descricao" />
+    </div>
+    <div class="p-col-2">Prospecto</div>
+    <div class="p-col-10">
+      <input pInputText type="text" [(ngModel)]="oportunidade.nomeProspecto" />
+    </div>
+    <div class="p-col-2">Valor</div>
+    <div class="p-col-10">
+      <input pInputText type="text" [(ngModel)]="oportunidade.valor" />
+    </div>
+    <div class="p-col-10 p-offset-2">
+      <button pButton type="submit" label="Adicionar" (click)="adicionar(oportunidade)"></button>
+    </div>
+  </div>
+
+</p-panel>
+
+<p-table [value]="oportunidades">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Descrição</th>
+      <th>Prospecto</th>
+      <th>Valor</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{ item.descricao }}</td>
+      <td>{{ item.nomeProspecto }}</td>
+      <td>R$ {{ item.valor }}</td>
+      <td>
+        <button pButton type="submit" icon="pi pi-trash" (click)="deletar(item)" style="margin-right: 10px;"></button>
+        <button pButton type="submit" icon="pi pi-pencil" (click)="update(item)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast></p-toast>
